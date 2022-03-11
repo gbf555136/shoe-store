@@ -117,7 +117,7 @@ const Product = ({ productInfo, updateCartsCount, isLogin }) => {
         <ProductBot>
           <ProductPrice>NT{productPrice}</ProductPrice>
           <ProductCartButton onClick={addCart}>
-            <ProductCart className="fa-solid fa-cart-shopping"></ProductCart>
+            <ProductCart className="fa-solid fa-cart-plus"></ProductCart>
           </ProductCartButton>
         </ProductBot>
       </ProductContainer>
