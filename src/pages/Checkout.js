@@ -23,6 +23,7 @@ const TotalPrice = styled.span`
 `;
 const ButtonContainer = styled.div`
   align-self: flex-end;
+  text-align: right;
 `;
 const Checkout = ({ totalPrice }) => {
   const navigate = useNavigate();
@@ -133,11 +134,14 @@ const Checkout = ({ totalPrice }) => {
             <TotalPrice>NT{formatPrice(totalPrice)}</TotalPrice>
           </TotalContainer>
           <ButtonContainer>
-            <Link to="/cart" className="btn btn-primary btn-lg align-self-end">
+            <Link
+              to="/cart"
+              className="btn btn-primary btn-lg mb-2 align-self-end"
+            >
               上一頁
             </Link>
             <button
-              className="btn btn-success btn-lg align-self-end ms-3"
+              className="btn btn-success btn-lg mb-2 align-self-end ms-3"
               type="submit"
             >
               結帳
