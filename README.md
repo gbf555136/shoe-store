@@ -9,10 +9,11 @@
 
 
 ## 說明
-- 請先用以下帳密登入
-- 帳號：loginusertest123@outlook.com
-- 密碼：login123
+- 搜尋框可輸入關鍵字搜尋商品
 
 - 登入後可將商品加入購物車並結帳
 
-- 上方搜尋框可輸入關鍵字搜尋
+- 帳號：loginusertest123@outlook.com
+- 密碼：login123
+
+
