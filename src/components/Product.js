@@ -5,6 +5,7 @@ import axios from "../commons/axios";
 import formatPrice from "../commons/formatPrice";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductWrapper = styled.div`
   padding-bottom: 1rem;
@@ -18,7 +19,7 @@ const ProductTop = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const ProductImgWrapper = styled.div`
+const ProductImgWrapper = styled(Link)`
   width: 100%;
   overflow: hidden;
 `;
@@ -63,7 +64,7 @@ const ProductCartButton = styled.button`
 `;
 const ProductCart = styled.i``;
 
-const Product = ({ productInfo, updateCartsCount, isLogin }) => {
+const Product = ({ productInfo, updateCartsNum, isLogin }) => {
   const productPrice = formatPrice(productInfo.price);
   const navigate = useNavigate();
 
@@ -95,7 +96,7 @@ const Product = ({ productInfo, updateCartsCount, isLogin }) => {
         });
         console.log(res);
         toast.success(`加入購物車`);
-        updateCartsCount();
+        updateCartsNum();
       }
       global.JsLoadingOverlay.hide();
     } catch (err) {
@@ -108,7 +109,7 @@ const Product = ({ productInfo, updateCartsCount, isLogin }) => {
     <ProductWrapper className="col-12 col-sm-6 col-md-4 col-lg-3">
       <ProductContainer>
         <ProductTop>
-          <ProductImgWrapper>
+          <ProductImgWrapper to={`/productInfo/${productInfo.id}`}>
             <ProductImg src={productInfo.imageUrl[0]}></ProductImg>
           </ProductImgWrapper>
           <ProductName>{productInfo.title}</ProductName>

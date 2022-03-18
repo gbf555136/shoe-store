@@ -48,7 +48,7 @@ const CheckoutContainer = styled.div`
   margin-top: 1rem;
 `;
 
-const Cart = ({ totalPrice, setTotalPrice, isLogin }) => {
+const Cart = ({ totalPrice, setTotalPrice, isLogin, updateCartsNum }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const calTotalPrice = useCallback(() => {
@@ -83,6 +83,7 @@ const Cart = ({ totalPrice, setTotalPrice, isLogin }) => {
 
   useEffect(() => {
     calTotalPrice();
+    updateCartsNum();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems]);
 
@@ -105,7 +106,7 @@ const Cart = ({ totalPrice, setTotalPrice, isLogin }) => {
         {!!cartItems.length && (
           <Footer>
             <TotalContainer>
-              <Total>Total：</Total>
+              <Total>總額：</Total>
               <TotalPrice>NT{formatPrice(totalPrice)}</TotalPrice>
             </TotalContainer>
             <CheckoutContainer>

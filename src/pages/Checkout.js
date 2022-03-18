@@ -44,7 +44,10 @@ const Checkout = ({ totalPrice }) => {
         allowOutsideClick: false,
         timer: 1500,
       });
-      setTimeout(() => navigate("/"), 1500);
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
     } catch (err) {
       console.log(err);
     }

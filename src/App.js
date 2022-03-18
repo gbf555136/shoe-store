@@ -7,17 +7,18 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import "./commons/auth";
 import Checkout from "./pages/Checkout";
 import "js-loading-overlay";
 import "./commons/loadingSetting";
 import NavBar from "./components/NavBar";
-import { axiosAuth as axios } from "./commons/axios";
+import axios, { axiosAuth } from "./commons/axios";
+import ProductInfo from "./pages/ProductInfo";
 
 const App = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
+  const [cartsNum, setCartsNum] = useState(0);
 
   const initTotalPrice = () => {
     const store_total = sessionStorage.getItem("totalPrice");
@@ -30,15 +31,33 @@ const App = () => {
     const token = global.auth.getToken();
     if (!token) setIsLogin(false);
     else {
-      const resp = await axios.post("/auth/check", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        api_token: token,
-      });
-      setIsLogin(resp.data.success);
+      try {
+        const resp = await axiosAuth.post("/auth/check", {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          api_token: token,
+        });
+        setIsLogin(resp.data.success);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
+  const updateCartsNum = async () => {
+    if (!isLogin) return;
+    try {
+      const res = await axios.get("/ec/shopping");
+      const carts = res.data.data;
+      if (!carts.length) return;
+      const cartsNumArr = carts.map((c) => Number(c.quantity));
+      const newCartsNum = cartsNumArr.reduce((ac, cv) => ac + cv);
+      setCartsNum(newCartsNum);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -47,12 +66,31 @@ const App = () => {
     checkLogin();
   }, []);
 
+  useEffect(() => {
+    updateCartsNum();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogin]);
+
   return (
     <div>
       <GlobalStyle />
-      <NavBar isLogin={isLogin} setIsLogin={setIsLogin} />
+      <NavBar
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}
+        cartsNum={cartsNum}
+        updateCartsNum={updateCartsNum}
+      />
       <Routes>
-        <Route path="/" element={<Homepage isLogin={isLogin} />} />
+        <Route
+          path="/"
+          element={
+            <Homepage
+              isLogin={isLogin}
+              cartsNum={cartsNum}
+              updateCartsNum={updateCartsNum}
+            />
+          }
+        />
         <Route
           path="/cart"
           element={
@@ -60,14 +98,20 @@ const App = () => {
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
               isLogin={isLogin}
+              updateCartsNum={updateCartsNum}
             />
           }
         />
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
-        <Route path="/register" element={<Register />} />
         <Route
           path="/checkout"
           element={<Checkout totalPrice={totalPrice} />}
+        />
+        <Route
+          path="/productInfo/:productID"
+          element={
+            <ProductInfo isLogin={isLogin} updateCartsNum={updateCartsNum} />
+          }
         />
       </Routes>
       <ToastContainer

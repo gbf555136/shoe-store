@@ -8,7 +8,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Serif TC', serif;
     font-family: 'Roboto', sans-serif;
   }
-
+  a {
+    color:black;
+    text-decoration: none;
+  }
   body {
     background-color: #f5f5f5;
     //hide scroll bar
@@ -30,7 +33,6 @@ const GlobalStyle = createGlobalStyle`
   input[type=number] {
     -moz-appearance: textfield;
   }
-
 
   `;
 
