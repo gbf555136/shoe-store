@@ -24,30 +24,36 @@ const SearchInput = styled.input`
   width: 80%;
   padding: 0.2rem 0.5rem;
   font-size: 1.2rem;
+  border: none;
 `;
 const ClearButton = styled.button`
   font-size: 1.2rem;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.7rem;
   border-radius: 4px;
+  border: none;
+  color: black;
+  background-color: #d7d7d7;
+  i {
+  }
+  &:hover {
+    background-color: #aaa;
+    color: white;
+  }
 `;
-const ClearIcon = styled.i``;
 
 const ToolBox = ({ searchInput, handleSearchChange, handleClearSearch }) => {
   return (
     <div className="ToolBox">
       <ToolWrapper>
-        <ToolTitle>SHOE STORE</ToolTitle>
+        <ToolTitle>Products</ToolTitle>
         <ToolSearch>
           <SearchInput
-            placeholder="Search"
+            placeholder="Search.."
             value={searchInput}
             onChange={handleSearchChange}
           ></SearchInput>
-          <ClearButton
-            onClick={handleClearSearch}
-            className="bg-secondary text-light"
-          >
-            <ClearIcon className="fa-solid fa-xmark"></ClearIcon>
+          <ClearButton onClick={handleClearSearch}>
+            <i className="fa-solid fa-xmark"></i>
           </ClearButton>
         </ToolSearch>
       </ToolWrapper>
