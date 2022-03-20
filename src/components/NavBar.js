@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import DropdownUser from "./DropdownUser";
+import image from "../assests/shoezlogo.svg";
 
-const NavWrapper = styled.div`
+const NavBarContainer = styled.div`
   display: flex;
   font-size: 1.5rem;
-  background-color: rgb(40, 40, 40);
+  background-color: gray;
   justify-content: space-between;
-  padding: 0.2rem 2rem 0 2rem;
+  padding: 0.2rem 8rem 0 8rem;
   margin-bottom: 1rem;
   @media screen and (max-width: 577px) {
     flex-direction: column;
@@ -17,93 +17,71 @@ const NavWrapper = styled.div`
     padding: 0;
   }
 `;
-const NavLeft = styled.div``;
-const NavRight = styled.div`
-  display: flex;
-`;
-const NavRightWrapper = styled.div``;
-const UserIcon = styled.i`
-  margin-left: 2rem;
-
-  color: white;
-`;
-const UserNickname = styled.span`
-  color: gray;
-  padding-left: 0.5rem;
-`;
-const LogoutButton = styled.button`
-  background: none;
-  border: none;
-  color: gray;
-  margin-left: 2rem;
-  &:hover {
-    color: #0a58ca;
+const NavLeft = styled.div`
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    &:hover {
+      color: white;
+    }
+    img {
+      width: 50px;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+      object-fit: cover;
+    }
   }
 `;
-const NavLink = styled(Link)`
-  text-decoration: none;
-  color: gray;
+const NavRight = styled.div`
+  display: flex;
+  a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
+  i {
+    position: relative;
+    color: black;
+    &:hover {
+      color: white;
+    }
+    span {
+      font-size: 0.8rem;
+      color: white;
+      background: red;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      padding: 2px 5px;
+      border-radius: 50%;
+    }
+  }
 `;
 
-const CartLink = styled(Link)`
-  font-size: 1.5rem;
-  color: white;
-  text-decoration: none;
-`;
-const CartIcon = styled.i`
-  position: relative;
-`;
-const CartCount = styled.span`
-  font-size: 0.5rem;
-`;
-
-const NavBar = ({ isLogin, setIsLogin, cartsNum, updateCartsNum }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    global.auth.deleteToken();
-    setIsLogin(false);
-    Swal.fire({
-      icon: "info",
-      title: "已登出",
-      showConfirmButton: false,
-      allowOutsideClick: false,
-      timer: 1500,
-    });
-    setTimeout(() => {
-      navigate("/");
-      window.location.reload();
-    }, 1500);
-  };
-
+const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
   return (
-    <div className="NavBar">
-      <NavWrapper>
+    <>
+      <NavBarContainer>
         <NavLeft>
-          <NavLink to="/">Home</NavLink>
+          <Link to="/">
+            <img src={image} alt="" />
+            SHOEZ
+          </Link>
         </NavLeft>
         <NavRight>
-          {isLogin ? (
-            <NavRightWrapper>
-              <CartLink to="/cart">
-                <CartIcon className="fa-solid fa-cart-shopping">
-                  <CartCount className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {cartsNum}
-                  </CartCount>
-                </CartIcon>
-              </CartLink>
-              <UserIcon className="fa-solid fa-user"></UserIcon>
-              <UserNickname>{global.auth.getUser()}</UserNickname>
-              <LogoutButton onClick={handleLogout}>登出</LogoutButton>
-            </NavRightWrapper>
-          ) : (
-            <NavRightWrapper>
-              <NavLink to="/login">Login</NavLink>
-            </NavRightWrapper>
-          )}
+          <Link to="/cart">
+            <i className="fa-solid fa-cart-shopping">
+              <span>{cartsNum}</span>
+            </i>
+          </Link>
+          <DropdownUser isLogin={isLogin} setIsLogin={setIsLogin} />
         </NavRight>
-      </NavWrapper>
-    </div>
+      </NavBarContainer>
+    </>
   );
 };
 
