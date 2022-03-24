@@ -54,9 +54,7 @@ const CustomSwiper = () => {
   const [allProducts, setAllProducts] = useState([]);
   const getAllProducts = async () => {
     try {
-      global.JsLoadingOverlay.show();
       const resp = await axios.get("/ec/products");
-      global.JsLoadingOverlay.hide();
       const result = resp.data.data;
       //   console.log(result);
       setAllProducts(result);
