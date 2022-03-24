@@ -1,5 +1,5 @@
 import React from "react";
-import homeBackground from "../assests/home-background.png";
+import homeBackground from "../assests/home-banner.png";
 import shoe1 from "../assests/shoe1.jpg";
 import shoe2 from "../assests/shoe2.jpg";
 import styled, { keyframes } from "styled-components/macro";

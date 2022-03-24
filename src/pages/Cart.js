@@ -88,7 +88,7 @@ const Cart = ({ totalPrice, setTotalPrice, isLogin, updateCartsNum }) => {
   }, [cartItems]);
 
   return (
-    <div className="Cart">
+    <div className="Cart pt-2">
       <CartContainer>
         <Header>
           <Title>Shopping Cart</Title>

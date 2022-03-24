@@ -120,7 +120,7 @@ const ProductInfo = ({ isLogin, updateCartsNum }) => {
   }, []);
 
   return (
-    <>
+    <div className="ProductInfo pt-4">
       <ProductContainer className="container">
         <ProductRow className="row">
           <ProductImgContainer className="col-md-6">
@@ -167,7 +167,7 @@ const ProductInfo = ({ isLogin, updateCartsNum }) => {
           </ProductContentContainer>
         </ProductRow>
       </ProductContainer>
-    </>
+    </div>
   );
 };
 

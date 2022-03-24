@@ -62,7 +62,7 @@ const Products = ({ isLogin, updateCartsNum }) => {
   }, []);
 
   return (
-    <div className="Homepage">
+    <div className="Homepage pt-2">
       <ToolBox
         searchInput={searchInput}
         handleSearchChange={handleSearchChange}
