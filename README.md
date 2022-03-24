@@ -1,12 +1,12 @@
-# 模擬電商網站 Shoe-store
+# 模擬電商網站 SHOEZ
 
-![2022-03-12_124352](https://user-images.githubusercontent.com/92734689/158960444-d4d9c359-1128-4c9d-974d-d288d1ac04f5.png)
+![2022-03-24_150133](https://user-images.githubusercontent.com/92734689/159862510-8bd8934f-783e-4ddf-a3d7-fa0c962430aa.png)
 
 - [Demo](https://gbf555136.github.io/shoe-store/)
 
 - `React`框架撰寫
 
-- 使用`bootstrap`、`styled-components`套件
+- 使用`bootstrap`、`styled-components`等套件
 
 ## 說明
 
