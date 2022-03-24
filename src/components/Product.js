@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import axios from "../commons/axios";
 import formatPrice from "../commons/formatPrice";
 import Swal from "sweetalert2";

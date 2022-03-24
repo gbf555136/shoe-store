@@ -6,11 +6,10 @@ import image from "../assests/shoezlogo.svg";
 
 const NavBarContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   font-size: 1.5rem;
   background-color: gray;
-  justify-content: space-between;
   padding: 0.2rem 8rem 0 8rem;
-  margin-bottom: 1rem;
   @media screen and (max-width: 577px) {
     flex-direction: column;
     align-items: center;
@@ -22,6 +21,8 @@ const NavLeft = styled.div`
     text-decoration: none;
     color: black;
     font-size: 1.5rem;
+    font-weight: bold;
+
     display: flex;
     align-items: center;
     &:hover {
@@ -35,8 +36,25 @@ const NavLeft = styled.div`
     }
   }
 `;
+
 const NavRight = styled.div`
   display: flex;
+  > ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding-right: 2rem;
+      a {
+        color: black;
+        font-weight: bold;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
   a {
     font-size: 1.5rem;
     color: white;
@@ -60,6 +78,14 @@ const NavRight = styled.div`
       border-radius: 50%;
     }
   }
+  @media screen and (max-width: 577px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    ul li {
+      padding: 0;
+    }
+  }
 `;
 
 const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
@@ -73,6 +99,11 @@ const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
           </Link>
         </NavLeft>
         <NavRight>
+          <ul>
+            <li>
+              <Link to="/products">所有商品</Link>
+            </li>
+          </ul>
           <Link to="/cart">
             <i className="fa-solid fa-cart-shopping">
               <span>{cartsNum}</span>

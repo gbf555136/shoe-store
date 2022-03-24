@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 
 const SmContainer = styled.div`
   max-width: 60%;
+  min-height: 90vh;
+  padding: 1rem 0;
 `;
 const FormContainer = styled.div``;
 

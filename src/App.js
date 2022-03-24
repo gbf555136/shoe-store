@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import GlobalStyle from "./theme/globalStyle";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
-import Homepage from "./pages/Homepage";
+import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import "./commons/auth";
@@ -14,6 +13,8 @@ import "./commons/loadingSetting";
 import NavBar from "./components/NavBar";
 import axios, { axiosAuth } from "./commons/axios";
 import ProductInfo from "./pages/ProductInfo";
+import Homepage from "./pages/Homepage";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -74,6 +75,17 @@ const App = () => {
   return (
     <div>
       <GlobalStyle />
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
       <NavBar
         isLogin={isLogin}
         setIsLogin={setIsLogin}
@@ -81,14 +93,11 @@ const App = () => {
         updateCartsNum={updateCartsNum}
       />
       <Routes>
+        <Route path="/" element={<Homepage />}></Route>
         <Route
-          path="/"
+          path="/products"
           element={
-            <Homepage
-              isLogin={isLogin}
-              cartsNum={cartsNum}
-              updateCartsNum={updateCartsNum}
-            />
+            <Products isLogin={isLogin} updateCartsNum={updateCartsNum} />
           }
         />
         <Route
@@ -114,17 +123,7 @@ const App = () => {
           }
         />
       </Routes>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={true}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-      />
+      <Footer />
     </div>
   );
 };

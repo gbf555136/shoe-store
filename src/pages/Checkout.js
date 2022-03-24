@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const SmContainer = styled.div`
   max-width: 60%;
+  padding: 1rem 0;
 `;
 const FormContainer = styled.div``;
 const TotalContainer = styled.div`
@@ -45,7 +46,7 @@ const Checkout = ({ totalPrice }) => {
         timer: 1500,
       });
       setTimeout(() => {
-        navigate("/");
+        navigate("/products");
         window.location.reload();
       }, 1500);
     } catch (err) {

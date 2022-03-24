@@ -68,7 +68,7 @@ const DropdownUser = ({ isLogin, setIsLogin }) => {
       timer: 1500,
     });
     setTimeout(() => {
-      navigate("/");
+      navigate("/products");
       window.location.reload();
     }, 1500);
   };
