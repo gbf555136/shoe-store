@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
@@ -9,11 +9,11 @@ const NavBarContainer = styled.div`
   justify-content: space-between;
   font-size: 1.5rem;
   background-color: gray;
-  padding: 0.2rem 8rem 0 8rem;
+  padding: 0.2rem 4rem 0 4rem;
+  position: relative;
   @media screen and (max-width: 577px) {
     flex-direction: column;
-    align-items: center;
-    padding: 0;
+    padding: 0 0.5rem;
   }
 `;
 const NavLeft = styled.div`
@@ -79,6 +79,7 @@ const NavRight = styled.div`
     }
   }
   @media screen and (max-width: 577px) {
+    display: ${(props) => !props.extendedNav && "none"};
     flex-direction: column;
     align-items: center;
     padding: 0;
@@ -87,8 +88,18 @@ const NavRight = styled.div`
     }
   }
 `;
+const ExtendedNav = styled.div`
+  display: none;
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  @media screen and (max-width: 577px) {
+    display: block;
+  }
+`;
 
 const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
+  const [extendedNav, setExtendedNav] = useState(false);
   return (
     <>
       <NavBarContainer>
@@ -98,7 +109,7 @@ const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
             SHOEZ
           </Link>
         </NavLeft>
-        <NavRight>
+        <NavRight extendedNav={extendedNav}>
           <ul>
             <li>
               <Link to="/products">所有商品</Link>
@@ -111,6 +122,13 @@ const NavBar = ({ isLogin, setIsLogin, cartsNum }) => {
           </Link>
           <DropdownUser isLogin={isLogin} setIsLogin={setIsLogin} />
         </NavRight>
+        <ExtendedNav onClick={() => setExtendedNav((cur) => !cur)}>
+          {extendedNav ? (
+            <i className="fa-solid fa-x"></i>
+          ) : (
+            <i className="fa-solid fa-bars"></i>
+          )}
+        </ExtendedNav>
       </NavBarContainer>
     </>
   );
