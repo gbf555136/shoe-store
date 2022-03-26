@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import CustomSwiper from "../components/CustomSwiper";
 
 const HomeContainer = styled.div`
-  max-width: 1320px;
   min-height: 90vh;
   margin: 0 auto;
   padding: 0;

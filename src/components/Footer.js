@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import image from "../assests/shoezlogo.svg";
 
 const FooterContainer = styled.div`
-  max-width: 1140px;
   width: 95%;
   margin: 0 auto;
   padding: 1rem 0;
