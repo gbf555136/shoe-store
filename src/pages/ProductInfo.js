@@ -38,13 +38,13 @@ const NumContainer = styled.div`
   display: flex;
 `;
 const Num = styled.input`
+  flex: 1 1 0;
   font-size: 1.3rem;
   padding: 0.2rem 0.3rem;
   text-align: center;
   background-color: #e9ecef;
   border: none;
   pointer-events: none;
-  flex: 1 1 0;
 `;
 const Numbutton = styled.button`
   flex: 1 1 0;

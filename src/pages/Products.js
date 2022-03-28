@@ -68,23 +68,19 @@ const Products = ({ isLogin, updateCartsNum }) => {
         handleSearchChange={handleSearchChange}
         handleClearSearch={handleClearSearch}
       />
-      <div className="Products">
-        <ProductsWrapper>
-          <div className="row">
-            {currenctProducts.map((p) => (
-              <Product
-                key={p.id}
-                productInfo={p}
-                updateCartsNum={updateCartsNum}
-                isLogin={isLogin}
-              />
-            ))}
-            {!currenctProducts.length && (
-              <EmptyMessage>No Results</EmptyMessage>
-            )}
-          </div>
-        </ProductsWrapper>
-      </div>
+      <ProductsWrapper>
+        <div className="row">
+          {currenctProducts.map((p) => (
+            <Product
+              key={p.id}
+              productInfo={p}
+              updateCartsNum={updateCartsNum}
+              isLogin={isLogin}
+            />
+          ))}
+          {!currenctProducts.length && <EmptyMessage>No Results</EmptyMessage>}
+        </div>
+      </ProductsWrapper>
     </div>
   );
 };

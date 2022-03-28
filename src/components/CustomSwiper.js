@@ -4,12 +4,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "../commons/axios";
 
 const StyledSwiper = styled(Swiper)`
-  /* background-color: #fefbf4; */
   min-height: 20vh;
 `;
 const ProductsContainer = styled.div`
@@ -70,7 +69,6 @@ const CustomSwiper = () => {
   return (
     <div>
       <StyledSwiper
-        spaceBetween={50}
         centeredSlides={true}
         autoplay={{
           delay: 5000,
@@ -81,7 +79,6 @@ const CustomSwiper = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
         loop={true}
       >
         <SwiperSlide>

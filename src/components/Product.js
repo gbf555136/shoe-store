@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import axios from "../commons/axios";
 import formatPrice from "../commons/formatPrice";
 import Swal from "sweetalert2";
@@ -37,8 +37,8 @@ const ProductName = styled.p`
   font-size: 1.2rem;
 `;
 const ProductBrand = styled.p`
-  font-size: 0.8rem;
-  color: grey;
+  font-size: 1rem;
+  color: gray;
 `;
 const ProductBot = styled.div`
   display: flex;
@@ -56,13 +56,12 @@ const ProductCartButton = styled.button`
   cursor: pointer;
   background-color: #eee;
   color: #8f8c8c;
-  transition: all 0.2s;
+  transition: all 0.3s;
   &:hover {
     background-color: #333;
     color: #fff;
   }
 `;
-const ProductCart = styled.i``;
 
 const Product = ({ productInfo, updateCartsNum, isLogin }) => {
   const productPrice = formatPrice(productInfo.price);
@@ -84,22 +83,23 @@ const Product = ({ productInfo, updateCartsNum, isLogin }) => {
       global.JsLoadingOverlay.show();
       const res = await axios.get("/ec/shopping");
       const allCartItem = res.data.data;
+      // console.log(allCartItem);
       const isCartItemExist =
         allCartItem.findIndex((cart) => cart.product.id === productInfo.id) !==
         -1;
       if (isCartItemExist) {
         toast.error(`已在購物車內`);
       } else {
-        const res = await axios.post("/ec/shopping", {
+        await axios.post("/ec/shopping", {
           product: productInfo.id,
           quantity: 1,
         });
-        console.log(res);
         toast.success(`加入購物車`);
         updateCartsNum();
       }
       global.JsLoadingOverlay.hide();
     } catch (err) {
+      global.JsLoadingOverlay.hide();
       console.log(err);
       toast.error(`發生錯誤，稍後在試`);
     }
@@ -118,7 +118,7 @@ const Product = ({ productInfo, updateCartsNum, isLogin }) => {
         <ProductBot>
           <ProductPrice>NT{productPrice}</ProductPrice>
           <ProductCartButton onClick={addCart}>
-            <ProductCart className="fa-solid fa-cart-plus"></ProductCart>
+            <i className="fa-solid fa-cart-plus"></i>
           </ProductCartButton>
         </ProductBot>
       </ProductContainer>

@@ -2,7 +2,7 @@ import React from "react";
 import homeBackground from "../assests/home-banner.png";
 import shoe1 from "../assests/shoe1.jpg";
 import shoe2 from "../assests/shoe2.jpg";
-import styled, { keyframes } from "styled-components/macro";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 import CustomSwiper from "../components/CustomSwiper";
@@ -46,9 +46,6 @@ const HomeHeader = styled.div`
 const HomeMain = styled.div`
   background-color: #fefbf4;
   padding: 1rem 0;
-  * {
-    /* border: 1px solid red; */
-  }
 `;
 const MainRow = styled.div`
   display: flex;
@@ -109,7 +106,7 @@ const MainContent = styled.div`
     width: 50%;
   }
 `;
-const HomeFooter = styled.div`
+const HomeBottom = styled.div`
   text-align: center;
   padding-top: 1rem;
   background-color: #f5f5dc;
@@ -147,10 +144,10 @@ const Homepage = () => {
             </MainContent>
           </MainRow>
         </HomeMain>
-        <HomeFooter>
+        <HomeBottom>
           <h2>流行趨勢</h2>
           <CustomSwiper />
-        </HomeFooter>
+        </HomeBottom>
       </HomeContainer>
     </>
   );

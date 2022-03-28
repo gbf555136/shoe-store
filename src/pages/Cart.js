@@ -110,7 +110,10 @@ const Cart = ({ totalPrice, setTotalPrice, isLogin, updateCartsNum }) => {
               <TotalPrice>NT{formatPrice(totalPrice)}</TotalPrice>
             </TotalContainer>
             <CheckoutContainer>
-              <Link to="/" className="btn btn-primary btn-lg align-self-end">
+              <Link
+                to="/products"
+                className="btn btn-primary btn-lg align-self-end"
+              >
                 繼續選購
               </Link>
               <Link

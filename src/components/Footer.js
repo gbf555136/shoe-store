@@ -7,7 +7,6 @@ const FooterContainer = styled.div`
   width: 95%;
   margin: 0 auto;
   padding: 1rem 0;
-  /* background-color: silver; */
 `;
 const FooterTop = styled.div`
   display: flex;

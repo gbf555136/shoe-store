@@ -5,12 +5,12 @@ import { axiosAuth as axios } from "../commons/axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const SmContainer = styled.div`
+const FormContainer = styled.div`
   max-width: 60%;
   min-height: 90vh;
   padding: 1rem 0;
+  margin: 0 auto;
 `;
-const FormContainer = styled.div``;
 
 const Login = ({ setIsLogin }) => {
   const navigate = useNavigate();
@@ -26,7 +26,6 @@ const Login = ({ setIsLogin }) => {
       // console.log(res);
       const token = res.data.token;
       global.auth.setToken(token);
-      global.auth.setUser(data.email);
       setIsLogin(true);
       Swal.fire({
         icon: "success",
@@ -47,7 +46,7 @@ const Login = ({ setIsLogin }) => {
   };
 
   return (
-    <SmContainer className="container">
+    <div>
       <FormContainer>
         <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column">
           <div className="form-group mb-2">
@@ -83,7 +82,7 @@ const Login = ({ setIsLogin }) => {
           </button>
         </form>
       </FormContainer>
-    </SmContainer>
+    </div>
   );
 };
 

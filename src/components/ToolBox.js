@@ -14,17 +14,17 @@ const ToolTitle = styled.p`
   font-size: 2rem;
 `;
 const ToolSearch = styled.div`
-  width: 40%;
-  text-align: right;
   @media screen and (max-width: 577px) {
     display: none;
   }
 `;
 const SearchInput = styled.input`
-  width: 80%;
+  width: 30vw;
   padding: 0.2rem 0.5rem;
   font-size: 1.2rem;
   border: none;
+  border-radius: 10px;
+  font-family: FontAwesome;
 `;
 const ClearButton = styled.button`
   font-size: 1.2rem;
@@ -33,8 +33,6 @@ const ClearButton = styled.button`
   border: none;
   color: black;
   background-color: #d7d7d7;
-  i {
-  }
   &:hover {
     background-color: #aaa;
     color: white;
@@ -48,7 +46,7 @@ const ToolBox = ({ searchInput, handleSearchChange, handleClearSearch }) => {
         <ToolTitle>Products</ToolTitle>
         <ToolSearch>
           <SearchInput
-            placeholder="Search.."
+            placeholder="&#xf002;"
             value={searchInput}
             onChange={handleSearchChange}
           ></SearchInput>

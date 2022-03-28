@@ -7,36 +7,53 @@ import { toast } from "react-toastify";
 const CartItemContainer = styled.div`
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   background-color: white;
   text-align: center;
   font-size: 1.3rem;
+  @media screen and (max-width: 577px) {
+    flex-direction: column;
+  }
 `;
-const ItemCancelContainer = styled.div`
-  flex: 1 1 20px;
+const ItemHeader = styled.div`
+  flex: 3 1 0;
+  display: flex;
+  align-items: center;
 `;
+const ItemCancelContainer = styled.div``;
 const ItemCancel = styled.button`
   background-color: white;
   border: none;
   cursor: pointer;
   font-size: 1.3rem;
   padding: 0.5rem;
+  @media screen and (max-width: 577px) {
+    font-size: 2rem;
+  }
 `;
-const ItemImgContainer = styled.div`
-  flex: 2 1 80px;
-`;
+const ItemImgContainer = styled.div``;
 const ItemImg = styled.img`
   width: 100%;
 `;
 const ItemName = styled.p`
-  flex: 4 1 200px;
+  flex: 4 1 0;
+  @media screen and (max-width: 577px) {
+    flex: 1 1 0;
+  }
 `;
 const ItemPrice = styled.p`
-  flex: 2 1 120px;
+  flex: 2 1 0;
+  @media screen and (max-width: 577px) {
+    flex: 1 1 0;
+    padding-top: 0.5rem;
+  }
 `;
 const ItemNumContainer = styled.div`
   flex: 0 1 120px;
   display: flex;
+  @media screen and (max-width: 577px) {
+    flex: 1 1 0;
+    padding-top: 0.5rem;
+  }
 `;
 const ItemNum = styled.input`
   width: 100%;
@@ -48,8 +65,12 @@ const ItemNum = styled.input`
   pointer-events: none;
 `;
 const ItemTotal = styled.p`
-  flex: 2 1 100px;
+  flex: 2 1 0;
   color: red;
+  @media screen and (max-width: 577px) {
+    flex: 1 1 0;
+    padding-top: 0.5rem;
+  }
 `;
 
 const CartItem = ({ cartItem, getCartItems }) => {
@@ -85,15 +106,17 @@ const CartItem = ({ cartItem, getCartItems }) => {
 
   return (
     <CartItemContainer>
-      <ItemCancelContainer>
-        <ItemCancel
-          className="fa-solid fa-xmark"
-          onClick={handleButtonClick}
-        ></ItemCancel>
-      </ItemCancelContainer>
-      <ItemImgContainer>
-        <ItemImg src={cartItem.product.imageUrl}></ItemImg>
-      </ItemImgContainer>
+      <ItemHeader>
+        <ItemCancelContainer>
+          <ItemCancel
+            className="fa-solid fa-xmark"
+            onClick={handleButtonClick}
+          ></ItemCancel>
+        </ItemCancelContainer>
+        <ItemImgContainer>
+          <ItemImg src={cartItem.product.imageUrl}></ItemImg>
+        </ItemImgContainer>
+      </ItemHeader>
       <ItemName>{cartItem.product.title}</ItemName>
       <ItemPrice>{formatPrice(cartItem.product.price)}</ItemPrice>
       <ItemNumContainer>

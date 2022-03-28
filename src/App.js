@@ -30,30 +30,37 @@ const App = () => {
 
   const checkLogin = async () => {
     const token = global.auth.getToken();
-    if (!token) setIsLogin(false);
-    else {
-      try {
-        const resp = await axiosAuth.post("/auth/check", {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          api_token: token,
-        });
-        setIsLogin(resp.data.success);
-      } catch (e) {
-        console.log(e);
-      }
+    if (!token) {
+      setIsLogin(false);
+      return;
+    }
+    try {
+      const resp = await axiosAuth.post("/auth/check", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        api_token: token,
+      });
+      setIsLogin(resp.data.success);
+    } catch (e) {
+      console.log(e);
     }
   };
 
   const updateCartsNum = async () => {
-    if (!isLogin) return;
+    if (!isLogin) {
+      setCartsNum(0);
+      return;
+    }
     try {
       const res = await axios.get("/ec/shopping");
       const carts = res.data.data;
-      if (!carts.length) return;
+      if (!carts.length) {
+        setCartsNum(0);
+        return;
+      }
       const cartsNumArr = carts.map((c) => Number(c.quantity));
       const newCartsNum = cartsNumArr.reduce((ac, cv) => ac + cv);
       setCartsNum(newCartsNum);

@@ -5,11 +5,6 @@ const setToken = (token) => {
   localStorage.setItem(jwt, token);
 };
 
-const setUser = (email) => {
-  const nick = email.split("@")[0];
-  localStorage.setItem(nickname, nick);
-};
-
 const getToken = () => {
   return localStorage.getItem(jwt);
 };
@@ -25,7 +20,6 @@ const getUser = () => {
 global.auth = {
   setToken,
   getToken,
-  setUser,
   getUser,
   deleteToken,
 };
