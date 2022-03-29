@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import "./commons/auth";
 import Checkout from "./pages/Checkout";
 import "js-loading-overlay";
-import "./commons/loadingSetting";
+import "./theme/loadingSetting";
 import NavBar from "./components/NavBar";
 import axios, { axiosAuth } from "./commons/axios";
 import ProductInfo from "./pages/ProductInfo";
