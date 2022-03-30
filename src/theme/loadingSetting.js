@@ -1,0 +1,15 @@
+global.JsLoadingOverlay.setOptions({
+  overlayBackgroundColor: "#8A8A8A",
+  overlayOpacity: 0.7,
+  spinnerIcon: "ball-spin",
+  spinnerColor: "#000",
+  spinnerSize: "3x",
+  overlayIDName: "overlay",
+  spinnerIDName: "spinner",
+  offsetX: 0,
+  offsetY: 0,
+  containerID: null,
+  lockScroll: false,
+  overlayZIndex: 9998,
+  spinnerZIndex: 9999,
+});
