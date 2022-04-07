@@ -95,11 +95,12 @@ const Cart = ({ totalPrice, setTotalPrice, isLogin, updateCartsNum }) => {
         </Header>
         <Main>
           {!cartItems.length && <EmptyMessage>It's Empty</EmptyMessage>}
-          {cartItems.map((c) => (
+          {cartItems.map((c, i) => (
             <CartItem
               key={c.product.id}
               cartItem={c}
               getCartItems={getCartItems}
+              showDelay={400 * i}
             />
           ))}
         </Main>

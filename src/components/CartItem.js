@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "../commons/axios";
 import formatPrice from "../commons/formatPrice";
 import { toast } from "react-toastify";
+import { CSSTransition } from "react-transition-group";
 
 const CartItemContainer = styled.div`
   display: flex;
@@ -10,6 +11,41 @@ const CartItemContainer = styled.div`
   background-color: white;
   text-align: center;
   font-size: 1.3rem;
+  position: relative;
+  opacity: 0;
+  &.fade-enter {
+    opacity: 0;
+    transform: translate(100px, 0);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all 400ms ease-out;
+  }
+  &.fade-enter-done {
+    opacity: 1;
+  }
+  &.fade-appear {
+    opacity: 0;
+    transform: translate(100px, 0);
+  }
+  &.fade-appear-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all 400ms ease;
+  }
+  &.fade-exit {
+    opacity: 1;
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transform: translate(-100px, 0);
+    transition: all 0.5s ease;
+  }
+  &.fade-exit-done {
+    opacity: 0;
+    transform: translate(-100%, 0);
+  }
   @media screen and (max-width: 577px) {
     flex-direction: column;
   }
@@ -73,7 +109,8 @@ const ItemTotal = styled.p`
   }
 `;
 
-const CartItem = ({ cartItem, getCartItems }) => {
+const CartItem = ({ cartItem, getCartItems, showDelay }) => {
+  const [show, setShow] = useState();
   const cartItemCost = formatPrice(
     Number(cartItem.quantity) * Number(cartItem.product.price)
   );
@@ -94,7 +131,8 @@ const CartItem = ({ cartItem, getCartItems }) => {
     }
   };
 
-  const handleButtonClick = async (e) => {
+  const handleCancelClick = async (e) => {
+    setShow((prev) => !prev);
     try {
       await axios.delete(`/ec/shopping/${cartItem.product.id}`);
       await getCartItems();
@@ -104,48 +142,54 @@ const CartItem = ({ cartItem, getCartItems }) => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => setShow(true), showDelay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <CartItemContainer>
-      <ItemHeader>
-        <ItemCancelContainer>
-          <ItemCancel
-            className="fa-solid fa-xmark"
-            onClick={handleButtonClick}
-          ></ItemCancel>
-        </ItemCancelContainer>
-        <ItemImgContainer>
-          <ItemImg src={cartItem.product.imageUrl}></ItemImg>
-        </ItemImgContainer>
-      </ItemHeader>
-      <ItemName>{cartItem.product.title}</ItemName>
-      <ItemPrice>{formatPrice(cartItem.product.price)}</ItemPrice>
-      <ItemNumContainer>
-        <button
-          className="btn btn-outline-secondary"
-          onClick={() => {
-            updateQuantity(cartItem.quantity - 1);
-          }}
-        >
-          -
-        </button>
-        <ItemNum
-          type="number"
-          value={cartItem.quantity}
-          min="1"
-          max="99"
-          readOnly
-        ></ItemNum>
-        <button
-          className="btn btn-outline-secondary"
-          onClick={() => {
-            updateQuantity(cartItem.quantity + 1);
-          }}
-        >
-          +
-        </button>
-      </ItemNumContainer>
-      <ItemTotal>{cartItemCost}</ItemTotal>
-    </CartItemContainer>
+    <CSSTransition in={show} timeout={400} classNames="fade">
+      <CartItemContainer>
+        <ItemHeader>
+          <ItemCancelContainer>
+            <ItemCancel
+              className="fa-solid fa-xmark"
+              onClick={handleCancelClick}
+            ></ItemCancel>
+          </ItemCancelContainer>
+          <ItemImgContainer>
+            <ItemImg src={cartItem.product.imageUrl}></ItemImg>
+          </ItemImgContainer>
+        </ItemHeader>
+        <ItemName>{cartItem.product.title}</ItemName>
+        <ItemPrice>{formatPrice(cartItem.product.price)}</ItemPrice>
+        <ItemNumContainer>
+          <button
+            className="btn btn-outline-secondary"
+            onClick={() => {
+              updateQuantity(cartItem.quantity - 1);
+            }}
+          >
+            -
+          </button>
+          <ItemNum
+            type="number"
+            value={cartItem.quantity}
+            min="1"
+            max="99"
+            readOnly
+          ></ItemNum>
+          <button
+            className="btn btn-outline-secondary"
+            onClick={() => {
+              updateQuantity(cartItem.quantity + 1);
+            }}
+          >
+            +
+          </button>
+        </ItemNumContainer>
+        <ItemTotal>{cartItemCost}</ItemTotal>
+      </CartItemContainer>
+    </CSSTransition>
   );
 };
 

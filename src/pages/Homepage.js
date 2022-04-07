@@ -4,7 +4,6 @@ import shoe1 from "../assests/shoe1.jpg";
 import shoe2 from "../assests/shoe2.jpg";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-
 import CustomSwiper from "../components/CustomSwiper";
 
 const HomeContainer = styled.div`
@@ -13,7 +12,11 @@ const HomeContainer = styled.div`
   padding: 0;
 `;
 const FontAnime = keyframes`
+  from {
+    opacity: 0;
+  }
   to {
+    opacity: 1;
     transform: translateX(0);
   }
 `;
@@ -23,6 +26,13 @@ const HomeHeader = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   height: 70vh;
+  .anime-appear {
+    opacity: 0;
+  }
+  .anime-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+  }
   p {
     text-align: left;
     padding: 1rem;
