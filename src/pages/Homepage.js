@@ -135,7 +135,7 @@ const Homepage = () => {
             <MainImg>
               <img src={shoe1} alt="" />
               <MainLink to="/products">
-                <p>瀏覽商品</p>
+                <p>瀏 覽 商 品</p>
               </MainLink>
             </MainImg>
             <MainContent>
@@ -146,7 +146,7 @@ const Homepage = () => {
             <MainImg>
               <img src={shoe2} alt="" />
               <MainLink to="/products">
-                <p>瀏覽商品</p>
+                <p>瀏 覽 商 品</p>
               </MainLink>
             </MainImg>
             <MainContent>

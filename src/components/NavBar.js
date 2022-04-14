@@ -9,7 +9,7 @@ const NavBarContainer = styled.div`
   justify-content: space-between;
   font-size: 1.5rem;
   background-color: gray;
-  padding: 0.2rem 4rem 0 4rem;
+  padding: 0.2rem 4rem;
   position: relative;
   @media screen and (max-width: 577px) {
     flex-direction: column;
@@ -22,17 +22,37 @@ const NavLeft = styled.div`
     color: black;
     font-size: 1.5rem;
     font-weight: bold;
-
     display: flex;
     align-items: center;
-    &:hover {
-      color: white;
-    }
+    position: relative;
+    transition: all 0.3s ease-out;
     img {
       width: 50px;
       height: 1.5rem;
       margin-right: 0.5rem;
       object-fit: cover;
+      transition: all 0.3s ease-out;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      right: 50%;
+      background-color: white;
+      transition: all 0.3s ease-out;
+    }
+    &:hover {
+      color: white;
+      &::before {
+        left: 0;
+        right: 0;
+      }
+      img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(39deg)
+          brightness(103%) contrast(104%);
+      }
     }
   }
 `;
@@ -49,8 +69,24 @@ const NavRight = styled.div`
       a {
         color: black;
         font-weight: bold;
+        position: relative;
+        transition: all 0.3s ease-out;
+        &::before {
+          content: "";
+          position: absolute;
+          height: 2px;
+          bottom: 0;
+          left: 50%;
+          right: 50%;
+          background-color: white;
+          transition: all 0.3s ease-out;
+        }
         &:hover {
           color: white;
+          &::before {
+            left: 0;
+            right: 0;
+          }
         }
       }
     }
@@ -63,6 +99,7 @@ const NavRight = styled.div`
   i {
     position: relative;
     color: black;
+    transition: all 0.3s ease-out;
     &:hover {
       color: white;
     }

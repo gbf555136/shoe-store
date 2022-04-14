@@ -14,6 +14,7 @@ const ProductContainer = styled.div`
   background-color: #d6d6d6;
   margin: 0 auto;
   padding: 0.5rem;
+  border-radius: 10px;
 `;
 const ProductTop = styled.div`
   display: flex;
@@ -22,15 +23,38 @@ const ProductTop = styled.div`
 const ProductImgWrapper = styled(Link)`
   width: 100%;
   overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
+`;
+const ProductHoverBg = styled.div`
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  &:hover {
+    opacity: 1;
+  }
 `;
 const ProductImg = styled.img`
   display: block;
   width: 100%;
   object-fit: cover;
   transition: all 0.2s;
-  &:hover {
-    transform: scale(1.2);
-  }
 `;
 const ProductName = styled.p`
   margin: 0.5rem 0 0.1rem 0;
@@ -111,6 +135,7 @@ const Product = ({ productInfo, updateCartsNum, isLogin }) => {
         <ProductTop>
           <ProductImgWrapper to={`/productInfo/${productInfo.id}`}>
             <ProductImg src={productInfo.imageUrl[0]}></ProductImg>
+            <ProductHoverBg>詳 細 資 訊</ProductHoverBg>
           </ProductImgWrapper>
           <ProductName>{productInfo.title}</ProductName>
           <ProductBrand>{productInfo.category}</ProductBrand>

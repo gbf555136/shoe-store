@@ -8,10 +8,16 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ProductContainer = styled.div`
-  min-height: 90vh;
+  min-height: 80vh;
+  align-items: center;
+  display: flex;
 `;
 const ProductRow = styled.div``;
-const ProductImgContainer = styled.div``;
+const ProductImgContainer = styled.div`
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0;
+`;
 const ProductImg = styled.img`
   width: 100%;
   object-fit: contain;
@@ -21,9 +27,12 @@ const ProductContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-const Title = styled.h2``;
+const Title = styled.h2`
+  margin-top: 0.5rem;
+`;
 const Description = styled.p`
   font-size: 1.3rem;
+  margin: 0.5rem 0;
 `;
 const Price = styled.p`
   align-self: flex-end;
@@ -120,13 +129,13 @@ const ProductInfo = ({ isLogin, updateCartsNum }) => {
   }, []);
 
   return (
-    <div className="ProductInfo pt-4">
+    <div className="ProductInfo">
       <ProductContainer className="container">
         <ProductRow className="row">
-          <ProductImgContainer className="col-md-6">
+          <ProductImgContainer className="col-md-5">
             <ProductImg src={product.imageUrl}></ProductImg>
           </ProductImgContainer>
-          <ProductContentContainer className="col-md-6">
+          <ProductContentContainer className="col-md-7">
             <Title>{product.description}</Title>
             <Description>{product.content}</Description>
             <Price>價格：{formatPrice(product.price)}</Price>
