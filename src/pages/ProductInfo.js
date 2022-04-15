@@ -6,6 +6,8 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ProductContainer = styled.div`
   min-height: 80vh;
@@ -125,12 +127,13 @@ const ProductInfo = ({ isLogin, updateCartsNum }) => {
   };
   useEffect(() => {
     getProduct();
+    AOS.init({ duration: 1300 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="ProductInfo">
-      <ProductContainer className="container">
+      <ProductContainer className="container" data-aos="zoom-in">
         <ProductRow className="row">
           <ProductImgContainer className="col-md-5">
             <ProductImg src={product.imageUrl}></ProductImg>

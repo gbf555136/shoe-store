@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import homeBackground from "../assests/home-banner.png";
 import shoe1 from "../assests/shoe1.jpg";
 import shoe2 from "../assests/shoe2.jpg";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import CustomSwiper from "../components/CustomSwiper";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HomeContainer = styled.div`
   min-height: 90vh;
@@ -123,6 +125,9 @@ const HomeBottom = styled.div`
 `;
 
 const Homepage = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <>
       <HomeContainer>
@@ -138,7 +143,7 @@ const Homepage = () => {
                 <p>瀏 覽 商 品</p>
               </MainLink>
             </MainImg>
-            <MainContent>
+            <MainContent data-aos="zoom-in-up">
               <h2>時尚、經典</h2>
             </MainContent>
           </MainRow>
@@ -149,13 +154,13 @@ const Homepage = () => {
                 <p>瀏 覽 商 品</p>
               </MainLink>
             </MainImg>
-            <MainContent>
+            <MainContent data-aos="zoom-in-up">
               <h2>自由、舒適</h2>
             </MainContent>
           </MainRow>
         </HomeMain>
         <HomeBottom>
-          <h2>流行趨勢</h2>
+          <h2 data-aos="fade-up">流行趨勢</h2>
           <CustomSwiper />
         </HomeBottom>
       </HomeContainer>

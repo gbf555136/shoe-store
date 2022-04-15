@@ -25,6 +25,12 @@ const SimpleProduct = styled.div`
     div {
       overflow: hidden;
       border-radius: 50%;
+      position: relative;
+      transition: all 0.3s;
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 22px 70px 4px;
+        transform: translate(-10px, -10px);
+      }
       img {
         width: 300px;
         height: 300px;
